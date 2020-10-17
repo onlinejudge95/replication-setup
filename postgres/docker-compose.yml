@@ -1,0 +1,17 @@
+version: "3.8"
+
+networks:
+    postgres-replication:
+        driver: bridge
+
+services:
+    postgres-master:
+        networks:
+            - postgres-replication
+        build:
+            context: master
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: user
+            POSTGRES_REPLICATION_USER: replica
+            POSTGRES_REPLICATION_PASSWORD: strongpassword

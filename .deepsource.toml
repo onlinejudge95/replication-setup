@@ -1,8 +1,14 @@
 version = 1
 
 [[analyzers]]
+name = "shell"
+enabled = true
+
+[[analyzers]]
 name = "docker"
 enabled = true
 
   [analyzers.meta]
-  dockerfile_paths = []
+  dockerfile_paths = [
+      "postgres/master/Dockerfile"
+  ]
