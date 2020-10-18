@@ -1,0 +1,48 @@
+version: "3.8"
+
+networks:
+    postgres-replication:
+        driver: bridge
+
+volumes:
+    master-data:
+    slave-data:
+
+services:
+    postgres-master:
+        container_name: postgres-master
+        image: postgres-master
+        restart: always
+        networks:
+            - postgres-replication
+        ports:
+            - 6432:5432
+        volumes:
+            - master-data:/var/lib/postgresql/data
+        build:
+            context: ./master
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: user
+            POSTGRES_DATABASE: postgres
+            POSTGRES_REPLICATION_USER: replica
+            POSTGRES_REPLICATION_PASSWORD: strongpassword
+
+    postgres-slave:
+        container_name: postgres-slave
+        image: postgres-slave
+        restart: always
+        networks:
+            - postgres-replication
+        ports:
+            - 6532:5432
+        volumes:
+            - slave-data:/var/lib/postgresql/data
+        build:
+            context: ./slave
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: user
+            POSTGRES_DATABASE: postgres
+            POSTGRES_REPLICATION_USER: replica
+            POSTGRES_REPLICATION_PASSWORD: strongpassword
