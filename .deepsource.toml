@@ -10,5 +10,6 @@ enabled = true
 
   [analyzers.meta]
   dockerfile_paths = [
-      "postgres/master/Dockerfile"
+      "postgres/master/Dockerfile",
+      "postgres/slave/Dockerfile",
   ]
