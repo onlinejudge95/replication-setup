@@ -15,30 +15,34 @@ services:
         restart: always
         networks:
             - postgres-replication
+        ports:
+            - 6432:5432
         volumes:
             - master-data:/var/lib/postgresql/data
         build:
             context: ./master
         environment:
-            PG_DATA: /var/lib/postgresql/data
             POSTGRES_PASSWORD: password
             POSTGRES_USER: user
             POSTGRES_DATABASE: postgres
             POSTGRES_REPLICATION_USER: replica
             POSTGRES_REPLICATION_PASSWORD: strongpassword
 
-    # postgres-slave:
-    #     container_name: postgres-slave
-    #     image: postgres-slave
-    #     restart: always
-    #     networks:
-    #         - postgres-replication
-    #     volumes:
-    #         - slave-data:/var/lib/postgresql/data
-    #     build:
-    #         context: ./slave
-    #     environment:
-    #         POSTGRES_PASSWORD: password
-    #         POSTGRES_USER: user
-    #         POSTGRES_REPLICATION_USER: replica
-    #         POSTGRES_REPLICATION_PASSWORD: strongpassword
+    postgres-slave:
+        container_name: postgres-slave
+        image: postgres-slave
+        restart: always
+        networks:
+            - postgres-replication
+        ports:
+            - 6532:5432
+        volumes:
+            - slave-data:/var/lib/postgresql/data
+        build:
+            context: ./slave
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: user
+            POSTGRES_DATABASE: postgres
+            POSTGRES_REPLICATION_USER: replica
+            POSTGRES_REPLICATION_PASSWORD: strongpassword
