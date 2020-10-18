@@ -5,4 +5,5 @@ This repository aims to provide collection of techniques to implement replicated
 
 ## TODO
 * ~~Add support for Deepsource~~
-* Add working example for Postgres
+* ~~Add working example for Postgres~~
+* Add working example for MySQL

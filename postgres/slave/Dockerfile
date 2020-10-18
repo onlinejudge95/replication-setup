@@ -7,9 +7,6 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# COPY postgresql.conf /var/lib/postgresql/data
-# COPY pg_hba.conf /var/lib/postgresql/data
-# COPY recovery.conf /var/lib/postgresql/data
 COPY setup-slave.sh /setup-slave.sh
 
 RUN chmod +x /setup-slave.sh

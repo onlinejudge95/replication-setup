@@ -7,8 +7,6 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# COPY postgresql.conf /var/lib/postgresql/data
-# COPY pg_hba.conf /etc/postgresql
 COPY setup-master.sh /docker-entrypoint-initdb.d/setup-master.sh
 
 RUN chmod 0666 /docker-entrypoint-initdb.d/setup-master.sh
