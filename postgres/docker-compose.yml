@@ -23,7 +23,7 @@ services:
             PG_DATA: /var/lib/postgresql/data
             POSTGRES_PASSWORD: password
             POSTGRES_USER: user
-            POSTGRES_DATABASE: replication
+            POSTGRES_DATABASE: postgres
             POSTGRES_REPLICATION_USER: replica
             POSTGRES_REPLICATION_PASSWORD: strongpassword
 
