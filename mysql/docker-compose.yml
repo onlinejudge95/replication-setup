@@ -26,24 +26,21 @@ services:
             MYSQL_PASSWORD: password
             MYSQL_USER: user
             MYSQL_DATABASE: mysql
-            POSTGRES_REPLICATION_USER: replica
-            POSTGRES_REPLICATION_PASSWORD: strongpassword
 
-#     postgres-slave:
-#         container_name: postgres-slave
-#         image: postgres-slave
-#         restart: always
-#         networks:
-#             - postgres-replication
-#         ports:
-#             - 6532:5432
-#         volumes:
-#             - slave-data:/var/lib/postgresql/data
-#         build:
-#             context: ./slave
-#         environment:
-#             POSTGRES_PASSWORD: password
-#             POSTGRES_USER: user
-#             POSTGRES_DATABASE: postgres
-#             POSTGRES_REPLICATION_USER: replica
-#             POSTGRES_REPLICATION_PASSWORD: strongpassword
+    # mysql-slave:
+    #     container_name: mysql-slave
+    #     image: mysql-slave
+    #     restart: always
+    #     networks:
+    #         - mysql-replication
+    #     ports:
+    #         - 4406:5432
+    #     volumes:
+    #         - slave-data:/var/lib/mysql
+    #     build:
+    #         context: ./slave
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: rootpassword
+    #         MYSQL_PASSWORD: password
+    #         MYSQL_USER: user
+    #         MYSQL_DATABASE: mysql
