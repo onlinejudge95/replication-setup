@@ -12,4 +12,6 @@ enabled = true
   dockerfile_paths = [
       "postgres/master/Dockerfile",
       "postgres/slave/Dockerfile",
+      "mysql/master/Dockerfile",
+      "mysql/slave/Dockerfile",
   ]
